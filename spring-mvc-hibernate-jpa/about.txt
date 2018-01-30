@@ -1,3 +1,6 @@
 1. i have used properties file to upload countries data to the UI.
-2. 
+
+2. TO download jars for bean validation use URL :
+   			-----  http://hibernate.org/validator/ 
+
 
