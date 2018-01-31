@@ -6,5 +6,11 @@
 <body>
 
 	The customer : ${customer.firstName} ${customer.lastName} is confirmed
+	<br>
+	The passed he got : ${customer.freePasses}
+	<br>
+	The postal code is : ${customer.postalCode}
+	<br>
+	The course code is : ${customer.courseCode}
 </body>
 </html>
