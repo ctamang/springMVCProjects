@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	User Name : ${user.name}
+	User Name : ${user.title} ${user.name}
 	<br>
 	Age : ${user.age}
 	<br>
@@ -14,5 +14,12 @@
 	Phone Number : ${user.phoneNumber}
 	<br>
 	Country : ${user.country}
+	<br>
+	Hobbies :
+	<ul>
+		<c:forEach var="hobby" items="${user.hobbies}">
+			<li>${hobby}</li>
+		</c:forEach>
+	</ul>
 </body>
 </html>
