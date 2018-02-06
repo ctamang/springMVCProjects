@@ -7,6 +7,8 @@ import com.practice.validation.ValidField;
 
 public class User {
 
+	private String id;
+	
 	private String title;
 	
 	@NotNull(message="required")
