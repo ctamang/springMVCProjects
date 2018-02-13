@@ -30,7 +30,7 @@ public class Order {
 	private Date orderDate;
 	
 	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.DETACH, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name="customer_id")	
 	private Customer customer;
 	
 	public Order() {
@@ -57,6 +57,7 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 
 	@Override
 	public String toString() {
