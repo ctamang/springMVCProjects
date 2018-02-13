@@ -45,6 +45,11 @@
 						<c:param name="customerId" value="${tempCustomer.id}"/>
 					</c:url>
 					
+					<!-- construct an "Orders" link with customerId -->
+					<c:url var="orderLink" value="/customer/orders">
+						<c:param name="customerId" value="${tempCustomer.id}"/>					
+					</c:url>
+					
 						<tr>
 							<td>${tempCustomer.firstName} </td>
 							<td>${tempCustomer.lastName} </td>
@@ -56,6 +61,8 @@
 								|
 								<a href="${deleteLink}"
 								onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+								|
+								<a href="${orderLink}">Orders</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ctech.crm.entity.Customer;
 import com.ctech.crm.service.CustomerService;
+import com.ctech.crm.service.OrderService;
 
 @Controller
 @RequestMapping("/customer")
@@ -21,6 +22,9 @@ public class CustomerController {
 	//need to inject customerService
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	OrderService orderService;
 
 	@GetMapping("/list")
 	public String listCustomers(Model theModel) {
@@ -72,11 +76,14 @@ public class CustomerController {
 		customerService.deleteCustomer(theId);
 		return "redirect:/customer/list";
 	}
-	
-	
-	
-	
-	
+
+	@GetMapping("/orders")
+	public String showOrders(@RequestParam("customerId")int theId) {
+		
+		orderService.getOrders(theId);
+		
+		return "order/list";
+	}
 }
 
 

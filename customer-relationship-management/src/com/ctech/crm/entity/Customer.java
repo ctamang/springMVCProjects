@@ -1,10 +1,15 @@
 package com.ctech.crm.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +29,10 @@ public class Customer {
 	
 	@Column(name="email")
 	private String email;
+	
+	@OneToMany(mappedBy="customer", cascade= CascadeType.ALL)
+	public List<Order> orders;
+	
 	
 	public Customer() {
 		
@@ -68,4 +77,27 @@ public class Customer {
 		this.email = email;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", orders=" + orders + "]";
+	}
+	
+	public void addOrder(Order theOrder) {
+		
+		if(orders == null) {
+			orders = new ArrayList<>();
+		}
+		
+		orders.add(theOrder);
+		theOrder.setCustomer(this);
+	}
 }
