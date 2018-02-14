@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,7 +32,8 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
-	@OneToMany(mappedBy="customer", cascade= CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	public List<Order> orders;
 	
 	
@@ -98,6 +101,5 @@ public class Customer {
 		}
 		
 		orders.add(theOrder);
-		theOrder.setCustomer(this);
 	}
 }

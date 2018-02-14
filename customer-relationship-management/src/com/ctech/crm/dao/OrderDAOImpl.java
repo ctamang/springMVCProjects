@@ -23,6 +23,8 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		Customer theCustomer = currentSession.get(Customer.class, id);
 		
+		System.out.println("Orders : /n" + theCustomer.getOrders());
+		
 		return theCustomer.getOrders();
 	}
 

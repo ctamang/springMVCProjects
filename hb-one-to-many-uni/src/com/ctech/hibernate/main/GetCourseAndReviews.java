@@ -26,13 +26,13 @@ public class GetCourseAndReviews {
 		try {
 			session.beginTransaction();
 			
-			int id = 10;
+			int id = 1;
 			
-			Course tempCourse = session.get(Course.class, id);
+			Review tempCourse = session.get(Review.class, id);
 			
 			System.out.println("course : " + tempCourse );
 			
-			System.out.println("Reviews : " + tempCourse.getReviews());
+			//System.out.println("Reviews : " + tempCourse.getReviews());
 			session.getTransaction().commit();
 			
 			System.out.println("DONE!");

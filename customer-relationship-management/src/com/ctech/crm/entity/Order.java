@@ -1,23 +1,15 @@
 package com.ctech.crm.entity;
 
-import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.ctech.crm.utility.DateUtils;
 
 @Entity
-@Table(name="order")
+@Table(name="customer_order")
 public class Order {
 
 	@Id
@@ -26,43 +18,27 @@ public class Order {
 	private int orderId;
 	
 	@Column(name="order_date")
-	@Temporal(TemporalType.DATE)
-	private Date orderDate;
-	
-	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.DETACH, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name="customer_id")	
-	private Customer customer;
-	
+	private String date;
+		
 	public Order() {
 		
 	}
-
-	public Order(Date orderDate) {
+	
+	public Order(String date) {
 		super();
-		this.orderDate = orderDate;
+		this.date = date;
 	}
 
-	public Date getOrderDate() {
-		return orderDate;
+	public String getDate() {
+		return date;
 	}
 
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setDate(String date) {
+		this.date = date;
 	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 
 	@Override
 	public String toString() {
-		return "Order [orderDate=" + DateUtils.formatDate(orderDate) + "]";
+		return "Order [orderId=" + orderId + ", date=" + date + "]";
 	}
-	
-	
 }
