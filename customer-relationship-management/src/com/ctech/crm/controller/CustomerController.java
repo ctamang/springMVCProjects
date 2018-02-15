@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ctech.crm.entity.Customer;
+import com.ctech.crm.entity.Order;
 import com.ctech.crm.service.CustomerService;
 import com.ctech.crm.service.OrderService;
 
@@ -78,11 +79,13 @@ public class CustomerController {
 	}
 
 	@GetMapping("/orders")
-	public String showOrders(@RequestParam("customerId")int theId) {
+	public String showOrders(@RequestParam("customerId")int theId, Model theModel) {
 		
-		orderService.getOrders(theId);
+		List<Order> orders = orderService.getOrders(theId);
 		
-		return "order/list";
+		theModel.addAttribute("orders", orders);
+		
+		return "customer-orders";
 	}
 }
 

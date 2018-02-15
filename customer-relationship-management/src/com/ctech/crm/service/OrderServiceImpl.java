@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ctech.crm.dao.OrderDAO;
 import com.ctech.crm.entity.Order;
+import com.ctech.crm.entity.OrderDetail;
 
 
 @Service
@@ -20,7 +21,12 @@ public class OrderServiceImpl implements OrderService{
 	@Transactional
 	public List<Order> getOrders(int id) {
 		
-		
 		return orderDAO.getOrders(id);
+	}
+
+	@Override
+	public List<OrderDetail> getOrderDetails(int id) {
+		
+		return orderDAO.getOrderDetails(id);
 	}
 }

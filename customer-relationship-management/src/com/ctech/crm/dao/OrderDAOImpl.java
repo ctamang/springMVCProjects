@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ctech.crm.entity.Customer;
 import com.ctech.crm.entity.Order;
+import com.ctech.crm.entity.OrderDetail;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -23,9 +24,18 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		Customer theCustomer = currentSession.get(Customer.class, id);
 		
-		System.out.println("Orders : /n" + theCustomer.getOrders());
-		
 		return theCustomer.getOrders();
 	}
+
+	@Override
+	public List<OrderDetail> getOrderDetails(int id) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Order theOrder = currentSession.get(Order.class, id);
+		
+		return theOrder.getOrderDetails();
+	}
+	
 
 }
