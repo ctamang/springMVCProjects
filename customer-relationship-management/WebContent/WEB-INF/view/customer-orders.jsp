@@ -30,13 +30,13 @@
 					<c:forEach var="tempOrder" items="${orders}">
 					
 					<!-- construct an "display Order Details" link with orderId -->
-					<c:url var="updateLink" value="/customer/showFormForUpdate">
-						<c:param name="tempOrder" value="${tempOrder.orderId}"/>
+					<c:url var="cartLink" value="/order/getOrderDetails">
+						<c:param name="orderId" value="${tempOrder.orderId}"/>
 					</c:url>
 					
 					<!-- construct an "Delete" link with orderId -->
-					<c:url var="deleteLink" value="/customer/delete">
-						<c:param name="tempOrder" value="${tempOrder.orderId}"/>
+					<c:url var="deleteLink" value="/order/delete">
+						<c:param name="orderId" value="${tempOrder.orderId}"/>
 					</c:url>
 					
 						<tr>
@@ -45,7 +45,7 @@
 							
 							<!-- Display the update Link -->
 							<td>
-								<a href="${updateLink}">Delete</a>
+								<a href="${cartLink}">Cart</a>
 								|
 								<a href="${deleteLink}"
 								onclick="if(!(confirm('Are you sure you want to delete this Order?'))) return false">Delete</a>

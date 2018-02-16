@@ -1,21 +1,31 @@
 package com.ctech.crm.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="order_detail")
 public class OrderDetail {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	
+	@Column(name="item_id")
 	private String itemId;
 	
+	@Column(name="item_description")
 	private String itemDesc;
 	
+	@Column(name="quantity")
 	private int quantity;
 	
-	private void OrderDetail() {
+	public OrderDetail() {
 		
 	}
 
@@ -57,7 +67,12 @@ public class OrderDetail {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "OrderDetail [id=" + id + ", itemId=" + itemId + ", itemDesc=" + itemDesc + ", quantity=" + quantity
+				+ "]";
+	}
+
 	
 }

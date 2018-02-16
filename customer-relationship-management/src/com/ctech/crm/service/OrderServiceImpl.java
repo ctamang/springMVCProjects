@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
+	@Transactional
 	public List<OrderDetail> getOrderDetails(int id) {
 		
 		return orderDAO.getOrderDetails(id);

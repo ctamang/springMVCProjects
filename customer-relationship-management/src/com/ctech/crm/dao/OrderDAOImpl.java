@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,14 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Customer theCustomer = currentSession.get(Customer.class, id);
+		Query<Customer> query = currentSession.createQuery("select i from Customer i "
+				+ "JOIN FETCH i.orders "
+				+ "where i.id=:theCustomerId",
+				Customer.class);
+		
+		query.setParameter("theCustomerId", id);
+		
+		Customer theCustomer = query.getSingleResult();
 		
 		return theCustomer.getOrders();
 	}

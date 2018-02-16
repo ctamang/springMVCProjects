@@ -19,7 +19,7 @@ public class OrderController {
 	OrderService orderService;
 	
 	@RequestMapping("/getOrderDetails")
-	public String getOrderDetails(@RequestParam("customerId")int theId, Model theModel) {
+	public String getOrderDetails(@RequestParam("orderId")int theId, Model theModel) {
 		
 		List<OrderDetail> orderDetails = orderService.getOrderDetails(theId);
 		

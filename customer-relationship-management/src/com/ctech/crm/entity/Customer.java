@@ -32,7 +32,7 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="customer_id")
 	public List<Order> orders;
 	

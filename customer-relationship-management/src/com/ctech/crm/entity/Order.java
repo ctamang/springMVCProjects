@@ -27,7 +27,7 @@ public class Order {
 	@Column(name="order_date")
 	private String date;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="order_id")
 	public List<OrderDetail> orderDetails;
 
