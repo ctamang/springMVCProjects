@@ -30,9 +30,14 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		query.setParameter("theCustomerId", id);
 		
-		Customer theCustomer = query.getSingleResult();
+		Customer theCustomer = query.getResultList().stream().findFirst().orElse(null);
 		
+		if(theCustomer == null) {
+			return null;
+		}
+
 		return theCustomer.getOrders();
+		
 	}
 
 	@Override
@@ -40,9 +45,30 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Order theOrder = currentSession.get(Order.class, id);
+		Query<Order> query = currentSession.createQuery("select i from Order i "
+				+ "JOIN FETCH i.orderDetails "
+				+ "where i.id=:theOrderId",
+				Order.class);
+		
+		query.setParameter("theOrderId", id);
+		
+		Order theOrder = query.getResultList().stream().findFirst().orElse(null);
+		
+		if(theOrder == null) {
+			return null;
+		}
 		
 		return theOrder.getOrderDetails();
+	}
+
+	@Override
+	public void deleteOrder(int id) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Order theOrder = currentSession.get(Order.class, id);
+		
+		currentSession.delete(theOrder);
 	}
 	
 

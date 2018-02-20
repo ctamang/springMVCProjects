@@ -10,5 +10,7 @@ public interface OrderDAO {
 	public List<Order> getOrders(int id);
 
 	public List<OrderDetail> getOrderDetails(int id);
+
+	public void deleteOrder(int id);
 	
 }

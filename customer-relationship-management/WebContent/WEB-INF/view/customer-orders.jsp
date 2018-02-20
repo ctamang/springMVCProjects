@@ -18,7 +18,13 @@
 		<div id="container">
 			<div id="content">
 
-			<!-- add our html table here -->
+			<c:set var="orders" value="${orders}"/>
+			<c:choose>
+			    <c:when test="${empty orders}">
+			        No Orders..
+			    </c:when>
+				<c:otherwise>	    
+				<!-- add our html table here -->
 				<table>
 					<tr>
 						<th>OrderId</th>
@@ -54,7 +60,13 @@
 						</tr>
 					</c:forEach>
 				</table>
-				
+			</c:otherwise>	
+			</c:choose>	
+			
+			<p>	
+				<a href="${pageContext.request.contextPath}/customer/list">Back to List</a>
+			</p>
+			
 			</div>
 		</div>
 	</body>

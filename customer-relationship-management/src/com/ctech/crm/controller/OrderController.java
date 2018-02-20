@@ -28,5 +28,14 @@ public class OrderController {
 		return "order_details";
 		
 	}
+	
+	@RequestMapping("/delete")
+	public String deleteOrder(@RequestParam("orderId") int id) {
+		
+		orderService.deleteOrder(id);
+		
+		return "order_details";
+		
+	}
 
 }

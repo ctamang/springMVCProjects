@@ -30,4 +30,11 @@ public class OrderServiceImpl implements OrderService{
 		
 		return orderDAO.getOrderDetails(id);
 	}
+
+	@Override
+	@Transactional
+	public void deleteOrder(int id) {
+
+		 orderDAO.deleteOrder(id);
+	}
 }
