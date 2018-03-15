@@ -6,35 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ctech.crm.dao.OrderDAO;
+import com.ctech.crm.dao.ItemDAO;
 import com.ctech.crm.entity.Item;
-import com.ctech.crm.entity.Order;
-
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class ItemServiceImpl implements ItemService {
 
 	@Autowired
-	OrderDAO orderDAO;
+	ItemDAO itemDAO;
 	
 	@Override
 	@Transactional
-	public List<Order> getOrders(int id) {
+	public List<Item> getItems() {
 		
-		return orderDAO.getOrders(id);
+		return itemDAO.getItems();
 	}
 
 	@Override
 	@Transactional
-	public List<Item> getOrderDetails(int id) {
+	public Item getItem(int theId) {
 		
-		return orderDAO.getOrderDetails(id);
+		return itemDAO.getItem(theId);
 	}
 
 	@Override
 	@Transactional
-	public void deleteOrder(int id) {
-
-		 orderDAO.deleteOrder(id);
+	public void saveItem(Item theItem) {
+		
+		itemDAO.saveItem(theItem);
 	}
+
 }

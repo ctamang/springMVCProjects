@@ -12,11 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+//import com.ctech.hibernate.entity.Course;
+
 @Entity
-@Table(name="customer_order")
+@Table(name="orderc")
 public class Order {
 
 	@Id
@@ -27,10 +30,18 @@ public class Order {
 	@Column(name="order_date")
 	private String date;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="order_id")
-	public List<OrderDetail> orderDetails;
+//	@OneToMany(cascade=CascadeType.ALL)
+//	@JoinColumn(name="order_id")
+//	public List<OrderDetail> orderDetails;
 
+	@ManyToMany
+	@JoinTable(
+			name="orderc_item",
+			joinColumns=@JoinColumn(name="order_id"),
+			inverseJoinColumns=@JoinColumn(name="item_id")
+		  )
+	private List<Item> items;
+	
 	public Order() {
 		
 	}
@@ -56,26 +67,42 @@ public class Order {
 		this.date = date;
 	}
 
-	public List<OrderDetail> getOrderDetails() {
-		return orderDetails;
+//	public List<OrderDetail> getOrderDetails() {
+//		return orderDetails;
+//	}
+//
+//	public void setOrderDetails(List<OrderDetail> orderDetails) {
+//		this.orderDetails = orderDetails;
+//	}
+	
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setOrderDetails(List<OrderDetail> orderDetails) {
-		this.orderDetails = orderDetails;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", date=" + date + ", orderDetails=" + orderDetails + "]";
+		return "Order [orderId=" + orderId + ", date=" + date + ", items=" + items
+				+ "]";
 	}
 
-	public void addOrderDetails(OrderDetail theOrderDetail) {
-		
-		if(theOrderDetail == null) {
-			orderDetails = new ArrayList<>();
+//	public void addOrderDetails(OrderDetail theOrderDetail) {
+//		
+//		if(theOrderDetail == null) {
+//			orderDetails = new ArrayList<>();
+//		}
+//		
+//		orderDetails.add(theOrderDetail);
+//	}
+	
+	public void addItems(Item theItem) {
+		if(items == null) {
+			items = new ArrayList<>();
 		}
 		
-		orderDetails.add(theOrderDetail);
+		items.add(theItem);
 	}
 }

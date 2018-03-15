@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ctech.crm.entity.OrderDetail;
+import com.ctech.crm.entity.Item;
 import com.ctech.crm.service.OrderService;
 
 @Controller
@@ -21,7 +21,7 @@ public class OrderController {
 	@RequestMapping("/getOrderDetails")
 	public String getOrderDetails(@RequestParam("orderId")int theId, Model theModel) {
 		
-		List<OrderDetail> orderDetails = orderService.getOrderDetails(theId);
+		List<Item> orderDetails = orderService.getOrderDetails(theId);
 		
 		theModel.addAttribute("orderDetails", orderDetails);
 		

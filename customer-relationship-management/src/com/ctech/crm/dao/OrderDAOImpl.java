@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ctech.crm.entity.Customer;
+import com.ctech.crm.entity.Item;
 import com.ctech.crm.entity.Order;
-import com.ctech.crm.entity.OrderDetail;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -41,24 +41,14 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderDetail> getOrderDetails(int id) {
+	public List<Item> getOrderDetails(int id) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Order> query = currentSession.createQuery("select i from Order i "
-				+ "JOIN FETCH i.orderDetails "
-				+ "where i.id=:theOrderId",
-				Order.class);
+		Order theOrder = currentSession.get(Order.class, id);
 		
-		query.setParameter("theOrderId", id);
+		return theOrder.getItems();
 		
-		Order theOrder = query.getResultList().stream().findFirst().orElse(null);
-		
-		if(theOrder == null) {
-			return null;
-		}
-		
-		return theOrder.getOrderDetails();
 	}
 
 	@Override
